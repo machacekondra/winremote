@@ -8,16 +8,16 @@ immediately, only specifying its name and module function.
 
 For example this command:
 ```bash
-$ python winremote.py --username=X--password=Y--ip=IP services list
+$ winremote --username=X--password=Y--ip=IP services list
 ```
 
 Equals to this python code:
 ```python
-import winremote
+from winremote import winremote
 import winrm
 import pprint
 
 session = winrm.Session(target=IP, auth=(X, Y))
-win = Windows(session, winremote.WMI(session))
+win = winremote.Windows(session, winremote.WMI(session))
 pprint.pprint(win.services.list())
 ```
