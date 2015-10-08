@@ -8,16 +8,21 @@ immediately, only specifying its name and module function.
 
 For example this command:
 ```bash
-$ winremote --username=X--password=Y--ip=IP services list
+$ winremote --username=Administrator --password=****** --ip=10.0.0.1 services get WinRM
+{'Name': 'WinRM', 'StartMode': 'Auto', 'State': 'Running'}
 ```
 
 Equals to this python code:
 ```python
-from winremote import winremote
-import winrm
 import pprint
+import winrm
 
-session = winrm.Session(target=IP, auth=(X, Y))
+from winremote import winremote
+
+session = winrm.Session(target='10.0.0.1', auth=('Administrator', '******'))
 win = winremote.Windows(session, winremote.WMI(session))
-pprint.pprint(win.services.list())
+pprint.pprint(win.services.get('WinRM'))
 ```
+
+This package uses [pywinrm](https://pypi.python.org/pypi/pywinrm/),
+so please follow its readme to setup your windows machine to work via WinRM.

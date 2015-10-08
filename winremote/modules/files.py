@@ -1,5 +1,5 @@
 """
-This module implements work basic commands via WMI.
+This module implements work with files and basic cli commands.
 """
 
 # session is dynamically loaded
