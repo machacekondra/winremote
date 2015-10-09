@@ -2,14 +2,13 @@
 This module implements work with services via WMI.
 """
 
-# session is dynamically loaded
-session = None
 
-
-def list(attributes='Name,State,StartMode'):
+def list(session, attributes='Name,State,StartMode'):
     """
     Description: return list of all services on windows machine
 
+    :param session: instance of Windows, which hold session to win machine
+    :type session: winremote.Windows
     :param attributes: comma delimited name of attributes to be returned
     :type attributes: str
     :returns: list of services info
@@ -18,10 +17,12 @@ def list(attributes='Name,State,StartMode'):
     return session._wmi.query('select %s from Win32_service' % attributes)
 
 
-def get(name, attributes='Name,State,StartMode'):
+def get(session, name, attributes='Name,State,StartMode'):
     """
     Description: return information about service @name
 
+    :param session: instance of Windows, which hold session to win machine
+    :type session: winremote.Windows
     :param name: name of service to be searched
     :type name: str
     :param attributes: comma delimited name of attributes to be returned

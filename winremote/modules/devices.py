@@ -2,14 +2,13 @@
 This module implements work with devices via WMI.
 """
 
-# session is dynamically loaded
-session = None
 
-
-def list(attributes='Name,ConfigManagerErrorCode'):
+def list(session, attributes='Name,ConfigManagerErrorCode'):
     """
     Description: return list of all devices on windows machine
 
+    :param session: instance of Windows, which hold session to win machine
+    :type session: winremote.Windows
     :param attributes: comma delimited name of attributes to be returned
     :type attributes: str
     :returns: list of devices info
@@ -18,10 +17,12 @@ def list(attributes='Name,ConfigManagerErrorCode'):
     return session._wmi.query('select %s from Win32_PnPEntity' % attributes)
 
 
-def status(name):
+def status(session, name):
     """
     Description: check status of device
 
+    :param session: instance of Windows, which hold session to win machine
+    :type session: winremote.Windows
     :param name: name of the device to fetch info
     :type name: str
     :returns: True or False, True if device is OK, False otherwise
@@ -36,10 +37,12 @@ def status(name):
     return False
 
 
-def get(name, attributes='Name'):
+def get(session, name, attributes='Name'):
     """
     Description: get basic info about windows device @name
 
+    :param session: instance of Windows, which hold session to win machine
+    :type session: winremote.Windows
     :param attributes: comma delimited name of attributes to be returned
     :type attributes: str
     :param name: name of the device to fetch info

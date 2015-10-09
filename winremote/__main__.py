@@ -79,9 +79,18 @@ def main():
 
         pprint.pprint(
             getattr(
-                getattr(win, args.args[0]),
+                getattr(
+                    __import__(
+                        'modules',
+                        globals(),
+                        locals(),
+                        [args.args[0]],
+                        -1
+                    ),
+                    args.args[0],
+                ),
                 args.args[1],
-            )(*args.args[2:], **kw)
+            )(win, *args.args[2:], **kw)
         )
         ret = 0
     except Exception as e:

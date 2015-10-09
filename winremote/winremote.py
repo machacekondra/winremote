@@ -26,15 +26,6 @@ class Windows(object):
         self._session = session
         self._wmi = wmi
 
-    def __getattr__(self, name):
-        mod = getattr(
-            __import__('modules', globals(), locals(), [name], -1),
-            name,
-        )
-        setattr(mod, 'session', self)
-        setattr(self, name, mod)
-        return mod
-
     def run_cmd(self, cmd, params=[]):
         """
         Run command on windows.

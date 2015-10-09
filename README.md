@@ -18,10 +18,15 @@ import pprint
 import winrm
 
 from winremote import winremote
+from winremote.modules import services
 
 session = winrm.Session(target='10.0.0.1', auth=('Administrator', '******'))
-win = winremote.Windows(session, winremote.WMI(session))
-pprint.pprint(win.services.get('WinRM'))
+pprint.pprint(
+    services.get(
+        winremote.Windows(session, winremote.WMI(session)),
+        'WinRM'
+    )
+)
 ```
 
 This package uses [pywinrm](https://pypi.python.org/pypi/pywinrm/),
