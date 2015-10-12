@@ -75,7 +75,6 @@ class WMI(object):
     """
     Class provides access to windows machine via WMI.
     """
-    re_arch = re.compile('^(?P<type>[0-9]+)-bit$', re.IGNORECASE)
     logger = logging.getLogger('wmi')
 
     def __init__(self, session):
