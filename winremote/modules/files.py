@@ -116,3 +116,17 @@ def exists(session, path):
     :rtype: bool
     """
     return session.run_cmd('dir /b "%s"' % path)[0]
+
+
+def ls_dir(session, path):
+    """
+    List content of directory
+
+    :param session: instance of Windows, which hold session to win machine
+    :type session: winremote.Windows
+    :param path: directory path
+    :type path: str
+    :returns: list of files and direcotries in directory at @path
+    :rtype: list
+    """
+    return session.run_cmd('dir /b "%s"' % path)[1].split('\r\n')[:-1]
