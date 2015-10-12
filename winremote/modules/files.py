@@ -129,4 +129,8 @@ def ls_dir(session, path):
     :returns: list of files and direcotries in directory at @path
     :rtype: list
     """
-    return session.run_cmd('dir /b "%s"' % path)[1].split('\r\n')[:-1]
+    cmd_out = session.run_cmd('dir /b "%s"' % path)
+    if cmd_out[0]:
+        return cmd_out[1].split('\r\n')[:-1]
+    else:
+        return []
