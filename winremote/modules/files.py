@@ -29,7 +29,7 @@ def copy_remote(session, src_path, dest_path):
     :rtype: tuple
     """
     # TODO: Add support to transfer binary files
-    return __transfer_text(src_path, dest_path)
+    return __transfer_text(session, src_path, dest_path)
 
 
 def copy_local(session, src_path, dest_path):
