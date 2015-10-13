@@ -10,7 +10,7 @@ except ImportError:
 
 setup(
     name='winremote',
-    version='1.1.1',
+    version='1.1.2',
     description='Tool to manage your windows machines remotely',
     long_description=long_description,
     url='https://github.com/machacekondra/winremote',
@@ -18,7 +18,8 @@ setup(
     author_email='machacek.ondra@gmail.com',
     license='GPLv3+',
     keywords='windows winrm',
-    install_requires=['argparse', 'pywinrm', 'pypandoc'],
+    install_requires=['argparse', 'pywinrm'],
+    requires=['pypandoc', 'pywinrm', 'argparse'],
     packages=find_packages(),
     entry_points={
         'console_scripts': [
