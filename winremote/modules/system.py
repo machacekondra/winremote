@@ -32,7 +32,7 @@ def list_processes(session, attributes='Name,ProcessId'):
     :returns: list of processes info
     :rtype: list of dict
     """
-    return session._wmi.query_first(
+    return session._wmi.query(
         "select %s from Win32_process" % attributes
     )
 
