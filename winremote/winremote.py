@@ -37,10 +37,10 @@ class Windows(object):
         :returns: result of command, status_code, std_out, std_err
         :rtype: tuple
         """
+        r = self._session.run_cmd(cmd, params)
         self.logger.debug(
             'Running cmd: %s, Out: %s, Err: %s', cmd, r.std_out, r.std_err
         )
-        r = self._session.run_cmd(cmd, params)
         if r.status_code:
             self.logger.error('Error running command %s: %s', cmd, r.std_err)
 
